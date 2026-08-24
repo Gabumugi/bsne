@@ -1,0 +1,6 @@
+{
+  "name": "ENB Committee Portal",
+  "description": "A complete, modern, secure, and responsive web application for ENB committee members to collaborate, share files, chat, and stay updated.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
