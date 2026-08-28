@@ -1,4 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { User, CommitteeFile, ChatMessage, Announcement, ActivityLog, NotificationItem } from './types';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
@@ -344,28 +345,40 @@ export default function App() {
         </div>
 
         {/* Mobile Sidebar Drawer */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-40 md:hidden flex">
-            <div
-              className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs"
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            <div className="relative z-50 w-72 h-full shadow-2xl">
-              <Sidebar
-                activeTab={activeTab}
-                setActiveTab={(tab) => {
-                  setActiveTab(tab);
-                  setMobileMenuOpen(false);
-                }}
-                filesCount={files.length}
-                chatCount={messages.length}
-                announcementsCount={announcements.length}
-                membersCount={users.length}
-                darkMode={darkMode}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <div className="fixed inset-0 z-40 md:hidden flex">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 bg-slate-950/50 backdrop-blur-xs"
+                onClick={() => setMobileMenuOpen(false)}
               />
+              <motion.div
+                initial={{ x: '-100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '-100%' }}
+                transition={{ type: 'spring', damping: 25, stiffness: 250 }}
+                className="relative z-50 w-72 h-full shadow-2xl"
+              >
+                <Sidebar
+                  activeTab={activeTab}
+                  setActiveTab={(tab) => {
+                    setActiveTab(tab);
+                    setMobileMenuOpen(false);
+                  }}
+                  filesCount={files.length}
+                  chatCount={messages.length}
+                  announcementsCount={announcements.length}
+                  membersCount={users.length}
+                  darkMode={darkMode}
+                />
+              </motion.div>
             </div>
-          </div>
-        )}
+          )}
+        </AnimatePresence>
 
         <main className="flex-1 min-w-0 p-4 md:p-8 max-w-7xl mx-auto overflow-y-auto min-h-[calc(100vh-4rem)]">
           <Suspense fallback={

@@ -176,6 +176,15 @@ let activityLogs = [
   }
 ];
 
+// PWA static routes
+app.get("/sw.js", (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'sw.js'));
+});
+
+app.get("/manifest.json", (req, res) => {
+  res.sendFile(path.join(process.cwd(), 'public', 'manifest.json'));
+});
+
 // API Endpoints
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
