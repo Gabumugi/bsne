@@ -237,7 +237,40 @@ export const FileSharingTab: React.FC<FileSharingTabProps> = ({
 
             <form onSubmit={handleUploadSubmit} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold">File Name</label>
+                <label className="text-xs font-semibold">Select File from Device (Phone / Laptop / Desktop)</label>
+                <div className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-colors ${
+                  darkMode ? 'border-slate-700 hover:border-indigo-500 bg-slate-800/40' : 'border-slate-200 hover:border-indigo-500 bg-slate-50'
+                }`} onClick={() => document.getElementById('local-file-input')?.click()}>
+                  <input
+                    id="local-file-input"
+                    type="file"
+                    className="hidden"
+                    onChange={(e) => {
+                      const f = e.target.files?.[0];
+                      if (f) {
+                        setFileName(f.name);
+                        setFileSize(f.size);
+                        const ext = f.name.split('.').pop()?.toLowerCase() || 'pdf';
+                        if (['xlsx', 'xls', 'csv'].includes(ext)) setFileType('spreadsheet');
+                        else if (['png', 'jpg', 'jpeg', 'webp'].includes(ext)) setFileType('image');
+                        else if (['zip', 'rar', 'tar'].includes(ext)) setFileType('archive');
+                        else if (['mp4', 'mov'].includes(ext)) setFileType('video');
+                        else setFileType('pdf');
+                      }
+                    }}
+                  />
+                  <div className="flex flex-col items-center space-y-2">
+                    <Upload className="w-8 h-8 text-indigo-500 animate-bounce" />
+                    <p className="text-xs font-medium text-slate-700 dark:text-slate-300">
+                      {fileName ? <span className="text-indigo-600 dark:text-indigo-400 font-bold">Selected: {fileName}</span> : 'Click here or drag files from local storage'}
+                    </p>
+                    <p className="text-[10px] text-slate-400">Supports PDF, spreadsheets, images, archives, and documents</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold">File Title / Name</label>
                 <input
                   type="text"
                   required

@@ -34,10 +34,7 @@ export const DashboardTab: React.FC<DashboardTabProps> = ({
             <Sparkles className="w-3.5 h-3.5" />
             <span>Committee Collaboration Portal</span>
           </div>
-          <h2 className="text-2xl font-bold tracking-tight">Welcome back to Project Committee Hub</h2>
-          <p className="text-sm text-slate-600 dark:text-slate-300">
-            Collaborate on research, manage budgets, review safety protocols, and communicate securely in real-time with committee members.
-          </p>
+
         </div>
         <div className="absolute right-6 top-1/2 -translate-y-1/2 hidden lg:flex items-center space-x-3">
           <button

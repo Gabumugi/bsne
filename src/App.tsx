@@ -14,7 +14,7 @@ const NotificationCenter = lazy(() => import('./components/NotificationCenter').
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // State

@@ -16,9 +16,9 @@ app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 let users = [
   {
     id: "u1",
-    name: "Prof. Arthur Pendelton",
-    email: "admin@committee.org",
-    role: "Admin",
+    name: "Tony Tosh",
+    email: "admin_01@committee.org",
+    role: "Admin_01",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80",
     department: "Executive Board",
     status: "online",
@@ -26,31 +26,31 @@ let users = [
   },
   {
     id: "u2",
-    name: "Dr. Elena Vance",
-    email: "elena.vance@committee.org",
-    role: "Member",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
-    department: "Research & Development",
+    name: "Apollo Ericks",
+    email: "admin_02@committee.org",
+    role: "Admin_02",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
+    department: "Operations & Oversight",
     status: "online",
     joinedDate: "2025-02-01"
   },
   {
     id: "u3",
-    name: "Marcus Chen",
-    email: "marcus.chen@committee.org",
-    role: "Member",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80",
-    department: "Finance & Budget",
+    name: "Mister Kinyua",
+    email: "admin_03@committee.org",
+    role: "Admin_03",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80",
+    department: "Finance & Compliance",
     status: "online",
     joinedDate: "2025-02-10"
   },
   {
     id: "u4",
-    name: "Sarah Jenkins",
-    email: "sarah.jenkins@committee.org",
+    name: "Dr. Elena Vance",
+    email: "elena.vance@committee.org",
     role: "Member",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80",
-    department: "Ethics & Compliance",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80",
+    department: "Research & Development",
     status: "away",
     joinedDate: "2025-03-01"
   }
@@ -238,7 +238,7 @@ app.post("/api/files", async (req, res) => {
       const ai = new GoogleGenAI({ apiKey });
       const prompt = `Provide a concise 1-2 sentence professional summary for a committee document named "${name}" in category "${category}" with description "${description || 'None'}".`;
       const response = await ai.models.generateContent({
-        model: 'gemini-2.5-flash',
+        model: 'gemini-3.6-flash',
         contents: prompt
       });
       if (response.text) {
@@ -390,7 +390,7 @@ User question: ${prompt}
 Provide a professional, concise, and helpful response formatted nicely with markdown.`;
 
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.6-flash',
       contents: fullPrompt
     });
 
